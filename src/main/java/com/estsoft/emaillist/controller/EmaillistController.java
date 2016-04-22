@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.estsoft.emaillist.dao.EmailListDao;
@@ -18,20 +18,26 @@ public class EmaillistController {
 	@Autowired
 	private EmailListDao dao;
 	
+//	@RequestMapping( value="/insert", method=RequestMethod.POST  )
+//	public String insert( 
+//		@RequestParam( value="fn", required=true, defaultValue="" ) String firstName, 
+//		@RequestParam( value="ln", required=true, defaultValue="" ) String lastName, 
+//		@RequestParam( value="email", required=true, defaultValue="" ) String email ) {
+//		
+//		EmailListVo vo = new EmailListVo();
+//		vo.setEmail(email);
+//		vo.setFirstName(firstName);
+//		vo.setLastName(lastName);
+//		
+//		dao.insert( vo );
+//		return "redirect:/index";
+//	}
+	
 	@RequestMapping( value="/insert", method=RequestMethod.POST  )
-	public String insert( 
-		@RequestParam( value="fn", required=true, defaultValue="" ) String firstName, 
-		@RequestParam( value="ln", required=true, defaultValue="" ) String lastName, 
-		@RequestParam( value="email", required=true, defaultValue="" ) String email ) {
-		
-		EmailListVo vo = new EmailListVo();
-		vo.setEmail(email);
-		vo.setFirstName(firstName);
-		vo.setLastName(lastName);
-		
+	public String insert( @ModelAttribute EmailListVo vo ) {
 		dao.insert( vo );
 		return "redirect:/index";
-	}
+	}	
 	
 	@RequestMapping( "/form" )
 	public String form() {
