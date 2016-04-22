@@ -8,23 +8,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.estsoft.db.DBConnection;
-import com.estsoft.db.MySQLWebDBConnection;
 import com.estsoft.emaillist.vo.EmailListVo;
 
 @Repository
 public class EmailListDao {
+	@Autowired
+	//같은 인터페이스를 구현한 클래스의 빈이 컨테이너에 생성되는 경우,
+	//	@Qualifier( "mySQLWebDBConnection" )  
 	private DBConnection dbConnection;
-
-	public EmailListDao( DBConnection dbConnection ) {
-		this.dbConnection = dbConnection;
-	}
-
-	public EmailListDao() {
-		this.dbConnection = new MySQLWebDBConnection();
-	}
 
 	public void insert( EmailListVo vo ) {
 		Connection conn = null;

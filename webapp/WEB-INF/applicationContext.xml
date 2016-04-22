@@ -17,7 +17,7 @@
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="com.estsoft.emaillist">
+	<context:component-scan base-package="com.estsoft.emailist">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation"
@@ -26,4 +26,9 @@
 			expression="org.springframework.stereotype.Component" />
 	</context:component-scan>
 	
+	<bean id="mySQLWebDBConnection"  
+			class="com.estsoft.db.MySQLWebDBConnection"></bean>
+			
+	<!--bean id="mariaDBConnection"  
+			class="com.estsoft.db.MariaDBConnection"></bean-->			
 </beans> 
